@@ -1,4 +1,15 @@
-var task;
+ function getPlans() {
+   $("textarea").each(function (element) {
+      $(this).attr("id");
+   //localStorage.getItem($(this).val());
+   //console.log($(this).val());
+     let idText = localStorage.getItem("7");
+     $(this).text(idText);
+   console.log('at index: ' + element + 'I have this information: ' + $(this).val())
+      console.log(localStorage.getItem("7"));
+   });
+}
+getPlans();
 
 $(document).ready(function () {
    //console.log(moment().format("H"));
@@ -9,7 +20,7 @@ $(document).ready(function () {
    var currentTime = moment().format("H");
 
 
-   
+
    $("#currentDay").text(moment().format("dddd[,] MMMM Do YYYY"));
 
    for (var i = 0; i < amHours.length; i++) {
@@ -18,19 +29,17 @@ $(document).ready(function () {
       newRow.append($('<div class="col-md-1 time-block"></div>'));
 
       if (parseInt(amHours[i]) < currentTime) {
-         newRow.append($('<textarea id="' + parseInt(amHours[i])  + '" input= text class="col-md-9 past"></textarea>'));
+         newRow.append($('<textarea id="' + parseInt(amHours[i]) + '" input= text class="col-md-9 past"></textarea>'));
 
       } else if (parseInt(amHours[i]) == currentTime) {
          newRow.append($('<textarea id="' + parseInt(amHours[i]) + '" input= text class="col-md-9 present"></textarea>'));
-         
+
       } else {
          newRow.append($('<textarea id="' + parseInt(amHours[i]) + '" input= text class="col-md-9 future"></textarea>'));
 
       }
       newRow.append($('<button data-hour= "' + parseInt(amHours[i]) + ' " class="col-md-1 saveBtn saveBtn fas fa-clipboard"></button>'));
       //console.log(parseInt(amHours[i]));
-
-
    };
 
    for (var i = 0; i < pmHours.length; i++) {
@@ -39,7 +48,8 @@ $(document).ready(function () {
       nextLine.append($('<div class="col-md-1 time-block"></div>'));
 
       if ((parseInt(pmHours[i]) + 12) < currentTime) {
-         nextLine.append($('<textarea id="' + (parseInt(pmHours[i]) + 12 ) + '" input= text class="col-md-9 past"></textarea>'));
+         nextLine.append($('<textarea id="' + (parseInt(pmHours[i]) + 12) + '" input= text class="col-md-9 past"></textarea>'));
+
 
       } else if ((parseInt(pmHours[i]) + 12) == currentTime) {
          nextLine.append($('<textarea id="' + (parseInt(pmHours[i]) + 12) + '" input= text class="col-md-9 present"></textarea>'));
@@ -51,10 +61,9 @@ $(document).ready(function () {
       nextLine.append($('<button data-hour="' + (parseInt(pmHours[i]) + 12) + '" class="col-md-1  saveBtn saveBtn fas fa-clipboard"></button>'));
 
       //classColor();
-      getPlans();
 
-     
-   
+
+
 
    };
    // tried to do it with a function //
@@ -83,33 +92,32 @@ $(document).ready(function () {
 
    // save to local storage
 
-$("button").on("click", function (event) {
-   event.preventDefault();
-   var hour = $(this).prev().attr("id");
+   $("button").on("click", function (event) {
+      event.preventDefault();
+      var hour = $(this).prev().attr("id");
 
-   var plan = $(this).prev().val();
+      var plan = $(this).prev().val();
 
-   localStorage.setItem(hour, plan);
-   console.log(hour);
-
-
-
-   console.log($(this).prev().val());
-   //console.log(newPlan);
-})
+      localStorage.setItem(JSON.stringify(hour), plan);
+      //console.log(hour);
 
 
-// to get items out of local storage
 
-function getPlans() {
-   for (var i = 0; i < amHours.length; i++) {
-      $("textarea").val(localStorage.getItem(amHours[i]));
-   }
-}
+      //console.log(plan);
+      //console.log(newPlan);
+   })
+
+
+
+
+   // to get items out of local storage
+
+   
 
 
 
 });
 
 
+//$("textarea").val(localStorage.getItem(amHours[i]));
 
