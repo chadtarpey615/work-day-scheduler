@@ -1,6 +1,7 @@
-$(document).ready(function () {
-   console.log(moment().format("H"));
+var task;
 
+$(document).ready(function () {
+   //console.log(moment().format("H"));
 
    let amHours = [" 7am", " 8am", " 9am", "10am", "11am", "12pm"];
    let pmHours = [" 1pm", " 2pm", " 3pm", " 4pm", " 5pm"];
@@ -17,17 +18,17 @@ $(document).ready(function () {
       newRow.append($('<div class="col-md-1 time-block"></div>'));
 
       if (parseInt(amHours[i]) < currentTime) {
-         newRow.append($('<textarea id="' + parseInt(amHours[i]) + '" input= text class="col-md-9 past"></textarea>'));
+         newRow.append($('<textarea id="' + parseInt(amHours[i])  + '" input= text class="col-md-9 past"></textarea>'));
 
       } else if (parseInt(amHours[i]) == currentTime) {
          newRow.append($('<textarea id="' + parseInt(amHours[i]) + '" input= text class="col-md-9 present"></textarea>'));
-
+         
       } else {
-         newRow.append($('<textarea id="' + parseInt(amHours[i]) + '" input= text class="col-md-9future"></textarea>'));
+         newRow.append($('<textarea id="' + parseInt(amHours[i]) + '" input= text class="col-md-9 future"></textarea>'));
 
       }
-      newRow.append($('<button class="col-md-1 saveBtn saveBtn fas fa-clipboard"></button>'));
-      console.log(parseInt(amHours[i]));
+      newRow.append($('<button data-hour= "' + parseInt(amHours[i]) + ' " class="col-md-1 saveBtn saveBtn fas fa-clipboard"></button>'));
+      //console.log(parseInt(amHours[i]));
 
 
    };
@@ -38,7 +39,7 @@ $(document).ready(function () {
       nextLine.append($('<div class="col-md-1 time-block"></div>'));
 
       if ((parseInt(pmHours[i]) + 12) < currentTime) {
-         nextLine.append($('<textarea id="' + (parseInt(pmHours[i]) + 12) + '" input= text class="col-md-9 past"></textarea>'));
+         nextLine.append($('<textarea id="' + (parseInt(pmHours[i]) + 12 ) + '" input= text class="col-md-9 past"></textarea>'));
 
       } else if ((parseInt(pmHours[i]) + 12) == currentTime) {
          nextLine.append($('<textarea id="' + (parseInt(pmHours[i]) + 12) + '" input= text class="col-md-9 present"></textarea>'));
@@ -47,8 +48,10 @@ $(document).ready(function () {
          nextLine.append($('<textarea id="' + (parseInt(pmHours[i]) + 12) + '" input= text class="col-md-9 future"></textarea>'));
 
       }
-      nextLine.append($('<button class="col-md-1 saveBtn saveBtn fas fa-clipboard"></button>'));
+      nextLine.append($('<button data-hour="' + (parseInt(pmHours[i]) + 12) + '" class="col-md-1  saveBtn saveBtn fas fa-clipboard"></button>'));
+
       //classColor();
+      getPlans();
 
      
    
@@ -79,13 +82,30 @@ $(document).ready(function () {
 
 
    // save to local storage
-   $("button").on("click", function () {
-      var timeOfday = $(this).prev().attr("#");
-      var text = $(this).prev().val();
 
-      localStorage.setItem(timeOfday, text);
-      console.log(timeOfday, text);
-   });
+$("button").on("click", function (event) {
+   event.preventDefault();
+   var hour = $(this).prev().attr("id");
+
+   var plan = $(this).prev().val();
+
+   localStorage.setItem(hour, plan);
+   console.log(hour);
+
+
+
+   console.log($(this).prev().val());
+   //console.log(newPlan);
+})
+
+
+// to get items out of local storage
+
+function getPlans() {
+   for (var i = 0; i < amHours.length; i++) {
+      $("textarea").val(localStorage.getItem(amHours[i]));
+   }
+}
 
 
 
