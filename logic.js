@@ -1,18 +1,12 @@
  function getPlans() {
    $("textarea").each(function (element) {
-      $(this).attr("id");
-   //localStorage.getItem($(this).val());
-   //console.log($(this).val());
-     let idText = localStorage.getItem("7");
-     $(this).text(idText);
-   console.log('at index: ' + element + 'I have this information: ' + $(this).val())
-      console.log(localStorage.getItem("7"));
+      $(this).attr("id", element);
+   $(this).append(localStorage.getItem(localStorage.key(element)));
+   console.log($(this).val());
    });
 }
-getPlans();
 
 $(document).ready(function () {
-   //console.log(moment().format("H"));
 
    let amHours = [" 7am", " 8am", " 9am", "10am", "11am", "12pm"];
    let pmHours = [" 1pm", " 2pm", " 3pm", " 4pm", " 5pm"];
@@ -92,32 +86,31 @@ $(document).ready(function () {
 
    // save to local storage
 
-   $("button").on("click", function (event) {
-      event.preventDefault();
-      var hour = $(this).prev().attr("id");
-
-      var plan = $(this).prev().val();
-
-      localStorage.setItem(JSON.stringify(hour), plan);
-      //console.log(hour);
-
-
-
-      //console.log(plan);
-      //console.log(newPlan);
-   })
+   
 
 
 
 
    // to get items out of local storage
 
+   $("button").on("click", function (event) {
+      event.preventDefault();
+      var hour = $(this).prev().attr("id");
    
+      var plan = $(this).prev().val();
+   
+      localStorage.setItem(JSON.stringify(hour), plan);
+      //console.log($(this).prev().attr("id"));
+      //console.log($(this).prev().val());
+   
+   
+   })
 
 
+   getPlans();
 
 });
 
 
-//$("textarea").val(localStorage.getItem(amHours[i]));
+
 
