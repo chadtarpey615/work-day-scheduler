@@ -1,41 +1,42 @@
 # Chad Tarpey
-![Project Image]()
+![Project Image](../assets/workday.png)
 
 ---
 
 ### Table of Contents
 - [Description](#description)
 - [How To Use](#how-to-use)
-- [References](#references)
 - [License](#license)
 - [Author Info](#author-info)
 ---
 
 ---
 
-# code-quiz
+# Day-Planner
 ---
 ## Acceptance Criteria
 ```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
+GIVEN I am using a daily planner to create a schedule
+WHEN I open the planner
+THEN the current day is displayed at the top of the calendar
+WHEN I scroll down
+THEN I am presented with timeblocks for standard business hours
+WHEN I view the timeblocks for that day
+THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+WHEN I click into a timeblock
+THEN I can enter an event
+WHEN I click the save button for that timeblock
+THEN the text for that event is saved in local storage
+WHEN I refresh the page
+THEN the saved events persist
 ```
 
 
 # Purpose
 ---
-A day planner to fit all of your needs.
-Save all the activities you need do on which hour it needs to be done.
-It will let you know when they are coming and if they have already past.
+* A day planner to fit all of your needs.
+* Save all the activities you need do on which hour it needs to be done.
+* It will let you know when they are coming and if they have already past.
 
 
 
@@ -53,7 +54,7 @@ Day-Planner
 
 ---
 ## How To Use
-- Visit  https://chadtarpey615.github.io//
+- Visit  https://chadtarpey615.github.io/work-day-scheduler/
 - Google Chrome or any Web Browser
 ---
 ## References
@@ -83,5 +84,5 @@ SOFTWARE.
 ---
 ## Author Info
 - Email - [chadtarpey@gmail.com](chadtarpey@gmail.com)
-- Github - [github.com/hadtarpey615]
+- Github - [github.com/chadtarpey615]
 
